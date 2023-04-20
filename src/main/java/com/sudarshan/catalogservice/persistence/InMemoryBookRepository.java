@@ -7,10 +7,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.stereotype.Repository;
 
 import com.sudarshan.catalogservice.domain.Book;
-import com.sudarshan.catalogservice.domain.BookRepository;
+import com.sudarshan.catalogservice.domain.BookMemRepository;
 
-@Repository
-public class InMemoryBookRepository implements BookRepository {
+//@Repository
+public class InMemoryBookRepository implements BookMemRepository {
   private static final Map<String, Book> books = new ConcurrentHashMap<>();
  
   @Override
