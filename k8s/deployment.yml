@@ -12,11 +12,27 @@ spec:
   template: 
     metadata: 
       labels: 
-        app: catalog-service 
+        app: catalog-service
+      annotations: 
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: "9001" 
     spec: 
       containers: 
       - name: catalog-service
         image: catalog-service
+        livenessProbe:
+          httpGet:  
+            path: /actuator/health/liveness 
+            port: 9001 
+          initialDelaySeconds: 10 
+          periodSeconds: 5        
+        readinessProbe: 
+            httpGet:  
+              path: /actuator/health/readiness 
+              port: 9001 
+            initialDelaySeconds: 5 
+            periodSeconds: 15 
         imagePullPolicy: IfNotPresent
         lifecycle:
           preStop:

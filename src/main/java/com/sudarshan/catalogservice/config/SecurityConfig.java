@@ -16,7 +16,8 @@ public class SecurityConfig {
 
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		return http.authorizeHttpRequests(authorize -> authorize.mvcMatchers(HttpMethod.GET, "/", "/books/**").permitAll()
+		return http.authorizeHttpRequests(authorize -> authorize.mvcMatchers("/actuator/**").permitAll() 
+																.mvcMatchers(HttpMethod.GET, "/", "/books/**").permitAll()
 															//.anyRequest().authenticated() //Here only authentication is required
 															  .anyRequest().hasAnyRole("employee") //Here authentication and role is required
 						)
