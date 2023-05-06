@@ -19,10 +19,9 @@ spring:
   lifecycle: 
     timeout-per-shutdown-phase: 15s  
   config: 
-    import: ""
+    import: "optional:configserver:"
   cloud: 
-    config:
-      enabled: false
+    config: 
       uri: http://localhost:8888
       request-connect-timeout: 5000
       request-read-timeout: 5000
